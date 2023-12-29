@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="fun.sast.sastpancake.mapper.UserMapper">
+    <resultMap id="User" type="fun.sast.sastpancake.pojo.User">
+        <result property="username" column="username"/>
+        <result property="password" column="password"/>
+        <result property="role" column="role"/>
+    </resultMap>
+
+    <select id="insertUser" resultMap="User" parameterType="java.lang.String">
+        INSERT INTO user (username, password, role)
+        VALUES (#{username}, #{password}, 0)
+    </select>
+
+    <select id="getUser" resultMap="User" parameterType="java.lang.String">
+        SELECT *
+        FROM user
+        WHERE username = #{username}
+    </select>
+</mapper>

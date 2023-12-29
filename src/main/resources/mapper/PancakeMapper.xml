@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="fun.sast.sastpancake.mapper.PancakeMapper">
+    <resultMap id="Pancake" type="fun.sast.sastpancake.pojo.Pancake">
+        <result property="id" column="id"/>
+        <result property="title" column="title"/>
+        <result property="createTime" column="create_time"/>
+        <result property="ddl" column="ddl"/>
+        <result property="isDone" column="is_done"/>
+    </resultMap>
+
+    <select id="getPancake" resultMap="Pancake">
+        SELECT *
+        FROM pancake
+    </select>
+
+    <select id="putPancake" parameterType="fun.sast.sastpancake.pojo.Pancake">
+        INSERT INTO pancake(id, title, create_time, ddl, is_done)
+        VALUES(null, #{title}, #{createTime}, #{ddl}, 0)
+    </select>
+
+    <select id="postPancake" parameterType="java.lang.Integer">
+        UPDATE pancake
+        SET is_done = 1
+        WHERE id = #{id}
+    </select>
+
+    <select id="deletePancake" parameterType="java.lang.Integer">
+        DELETE
+        FROM pancake
+        WHERE id = #{id}
+    </select>
+</mapper>
